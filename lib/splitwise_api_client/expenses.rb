@@ -9,6 +9,7 @@ module SplitwiseApiClient
     private
 
     def format_debit_body(from, to, amount, date = DateTime.now, description = "")
+      halved = (amount / 2).round(2)
       {
         cost: amount.to_s,
         description: description,
@@ -16,9 +17,9 @@ module SplitwiseApiClient
         group_id: 0,
         users__0__user_id: to,
         users__0__paid_share: "0",
-        users__0__owed_share: (amount / 2).to_s,
+        users__0__owed_share: halved.to_s,
         users__1__user_id: from,
-        users__1__owed_share: (amount / 2).to_s,
+        users__1__owed_share: (amount - halved).to_s,
         users__1__paid_share: amount.to_s
       }
     end
