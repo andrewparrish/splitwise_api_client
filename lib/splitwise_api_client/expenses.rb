@@ -15,6 +15,7 @@ module SplitwiseApiClient
         description: description,
         date: date.to_s,
         group_id: 0,
+        currency_code: "USD",
         users__0__user_id: to,
         users__0__paid_share: "0",
         users__0__owed_share: halved.to_s,
